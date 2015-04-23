@@ -1,6 +1,7 @@
 body {
   margin: 0;
   font-family: "helvetica neue";
+  background: #eee;
 }
 
 a {
@@ -25,6 +26,8 @@ a {
 
 .main {
   margin: 10px;
+  margin-bottom: 50px;
+  margin-top:50px;
 }
 
 .main h2 {
@@ -33,18 +36,16 @@ a {
 
 .footer {
   border-top: 1px solid gray;
-  margin: 10px;
+  background:rgb(18, 56, 94);
+  padding: 5px;
+
 }
 
 .footer div {
   display: inline-block;
   margin-right: 40px;
-  color: rgb(93, 97, 97);
+  color: rgb(151, 155, 155);
   font-size: 14px;
-}
-
-.footer a {
-
 }
 
 ul.projects {
@@ -71,5 +72,8 @@ span.pro-desc {
 }
 
 .description {
-  width: 70%;
+  width: 60%;
+  background:white;
+  border-radius: 10px;
+  padding: 20px;
 }
