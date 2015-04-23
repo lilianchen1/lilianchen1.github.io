@@ -1,0 +1,75 @@
+body {
+  margin: 0;
+  font-family: "helvetica neue";
+}
+
+a {
+  text-decoration: none;
+  color: rgb(51, 139, 198);
+}
+
+.nav-bar {
+  background: black;
+  padding: 10px;
+}
+
+.nav-bar a {
+  color: white;
+  font-style: italic;
+  font-family: "Book Antiqua";
+}
+
+.nav-bar a:hover {
+  color: rgb(153, 204, 255);
+}
+
+.main {
+  margin: 10px;
+}
+
+.main h2 {
+  text-align: center;
+}
+
+.footer {
+  border-top: 1px solid gray;
+  margin: 10px;
+}
+
+.footer div {
+  display: inline-block;
+  margin-right: 40px;
+  color: rgb(93, 97, 97);
+  font-size: 14px;
+}
+
+.footer a {
+
+}
+
+ul.projects {
+  list-style: none;
+}
+
+ul.projects li a:first-of-type {
+  font-weight: 800;
+}
+
+ul.projects li a:nth-of-type(2), ul.projects li a:nth-of-type(3) {
+  font-size: 12px;
+  margin-left: 10px;
+}
+
+ul.projects p {
+  color: gray;
+  font-size: 14px;
+  width: 500px;
+}
+
+span.pro-desc {
+  border-bottom: 1px solid gray;
+}
+
+.description {
+  width: 70%;
+}
