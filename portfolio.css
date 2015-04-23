@@ -27,7 +27,8 @@ a {
 .main {
   margin: 10px;
   margin-bottom: 50px;
-  margin-top:50px;
+  margin-top:20px;
+  overflow:auto;
 }
 
 .main h2 {
@@ -37,7 +38,7 @@ a {
 .footer {
   border-top: 1px solid gray;
   background:rgb(18, 56, 94);
-  padding: 5px;
+  padding: 10px;
 
 }
 
@@ -71,9 +72,35 @@ span.pro-desc {
   border-bottom: 1px solid gray;
 }
 
-.description {
+span.mit {
+  color: rgb(128, 0, 0);
+  font-weight: bold;
+}
+
+div.description {
   width: 60%;
   background:white;
   border-radius: 10px;
   padding: 20px;
+  display:inline-block;
+  margin-left: 20px;
+  float:left;
+}
+
+div.img {
+  display:inline-block;
+  margin-left:20px;
+  float:left;
+}
+
+p.elevator-pitch {
+  width: 300px;
+  background: white;
+  border-radius: 10px;
+  padding: 10px;
+  margin-left: 2px;
+}
+
+.head {
+  margin-bottom: 50px;
 }
