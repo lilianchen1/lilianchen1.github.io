@@ -20,6 +20,10 @@ a {
   font-family: "Book Antiqua";
 }
 
+.nav-bar a:nth-child(2) {
+  margin-left:20px;
+}
+
 .nav-bar a:hover {
   color: rgb(153, 204, 255);
 }
@@ -103,4 +107,8 @@ p.elevator-pitch {
 
 .head {
   margin-bottom: 50px;
+}
+
+h3.more-pro-head {
+  text-align: center;
 }
