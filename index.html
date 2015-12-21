@@ -4,54 +4,253 @@
   <head>
     <title>Yiling's Portfolio</title>
     <link href="./portfolio.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+    <script src="https://fb.me/react-0.13.3.js"></script>
+    <script src="https://fb.me/JSXTransformer-0.13.3.js"></script>
   </head>
   <body>
-    <div class="nav-bar">
-      <a href="./static_pages/about.html">About Yiling</a>
-      <a href="./static_pages/projects.html">More Projects</a>
-    </div>
-    <div class="main">
-      <div class="head"><h2>Welcome to my portfolio!</h2></div>
-      <div class="description">
-        <h5>Check out some of my projects:</h5>
-        <ul class="projects">
-          <li>
-            <a href="http://www.no-phenotype.com/" target="_blank">No Phenotype</a><br>
-            <a href="https://no-phenotype.herokuapp.com" target="_blank">Heroku Link</a><br>
-            <a href="https://github.com/lilianchen1/aa_final_project" target="_blank">Github Repo</a>
-            <p><span class="pro-desc">Summary:</span> No Phenotype is a Q/A site
-              for the field of scientific research. It is inspired by Stack Overflow.
-              It is a full stack web application built with rails on the backend
-              and backbone on the frontend.
-            </p>
-          </li>
-          <li>
-            <a href="/aA_jsGame_Viral_Destruction/index.html" target="_blank">Viral Destruction</a><br>
-            <a href="https://github.com/lilianchen1/aA_jsGame_Viral_Destruction" target="_blank">Github Repo</a><br>
-            <p><span class="pro-desc">Summary:</span> Viral Destruction is inspired by the classic Asteroids Game.
-               In this rendition, the asteroids are nasty viruses, the ship
-               is a white blood cell (B lymphocype), and the bullets are
-               antibodies that will target the viruses and lead to
-               their destruction!</p>
-          </li>
-          <li>
-            <a href="/TicTacToe/index.html" target="_blank">Tic Tac Toe</a><br>
-            <a href="https://github.com/lilianchen1/TicTacToe" target="_blank">Github Repo</a><br>
-            <p><span class="pro-desc">Summary:</span> Play against the unbeatable computer!</p>
-          </li>
-        </ul>
-      </div>
-      <div class="img">
-        <img src="./pics/profile_pic.JPG" width="320"/>
-        <p class="elevator-pitch">I'm a web developer trained in Ruby, Rails, Javascript, jQuery, Backbone,
-            HTML and CSS at App Academy, one of San Francisco's most selective web development bootcamps!
-        </p>
-      </div>
-    </div>
-    <div class="footer">
-      <div>contact: yilingchen1@gmail.com</div>
-      <div>github: <a href="https://github.com/lilianchen1" target="_blank">lilianchen1</a></div>
-      <div><a href="https://www.linkedin.com/in/yilingchen405" target="_blank">linkedIn</a></div>
-    </div>
+    <div id='main'></div>
+
+    <script type="text/jsx">
+
+      var navigation = {
+        about: 'About Yiling',
+        projects: 'Featured Projects'
+      };
+
+      var description = {
+        shown: "I'm a software engineer with experience in Ruby, Rails, Javascript, SQL, and HTML/CSS. I love bringing designs and mockups to life and give users great UI experiences!",
+        header: 'Brief Personal History',
+        paragraph1: 'I went to the Massachusetts Institute of Technology, where I studied Biology. I am a nerd when it comes to immunology. I took an intro to CS class at MIT and it was one of the most challenging but fulfilling and interesting classes I have ever taken.',
+        paragraph2: 'After graduating from MIT, I moved to San Francisco. Here, my life and my career journey took an 180 degree turn, and IT IS AWESOME! I am passionate about and excited by Web Development. I graduated from App Academy in May 2015 and started my first tech job soon after at Lumos Labs.',
+        funfact1: 'I speak 3 languages: English, Mandarin, and French',
+        funfact2: 'I took Latin for 3 years in high school and won several National Latin Exam medals',
+        funfact3: 'I have lived in 3 countries, 6 cities',
+        readmore: 'Read More',
+        readless: 'Read Less'
+      };
+
+      var featuredProjects = {
+        no_phenotype: 'No Phenotype',
+        viral_destruction: 'Viral Destruction',
+        tic_tac_toe: 'Tic Tac Toe',
+        minesweeper: 'Minesweeper'
+      };
+
+      var projectsDescriptions = {
+        no_phenotype: 'No Phenotype is a Q/A site for the field of scientific research. It is inspired by Stack Overflow. It is a full stack web application built with rails on the backend and backbone on the frontend.',
+        viral_destruction: 'Viral Destruction is inspired by the classic Asteroids Game. In this rendition, the asteroids are nasty viruses, the ship is a white blood cell (B lymphocype), and the bullets are antibodies that will target the viruses and lead to their destruction!',
+        tic_tac_toe: 'Play this popular game against an unbeatable computer!',
+        minesweeper: 'Minesweeper - My first attempt at React'
+      }
+
+      var projectsLink = {
+        no_phenotype: 'https://no-phenotype.herokuapp.com',
+        viral_destruction: 'http://lilianchen1.github.io/aA_jsGame_Viral_Destruction/index.html',
+        tic_tac_toe: 'http://lilianchen1.github.io/TicTacToe/index.html',
+        minesweeper: 'javascript:void(0)'
+      }
+
+      var githubLink = {
+        no_phenotype: 'https://github.com/lilianchen1/aa_final_project',
+        viral_destruction: 'https://github.com/lilianchen1/aA_jsGame_Viral_Destruction',
+        tic_tac_toe: 'https://github.com/lilianchen1/TicTacToe',
+        minesweeper: 'javascript:void(0)'
+      }
+
+      var projects = ['no_phenotype', 'viral_destruction', 'tic_tac_toe', 'minesweeper'];
+
+      var FeaturedProjects = React.createClass({
+        getInitialState: function() {
+          return {
+            activeIndex: 0,
+            lists: [],
+            trackers: []
+          }
+        },
+        componentDidMount: function() {
+          var lists = $(this.getDOMNode()).find('.project-item');
+          $(lists[0]).removeClass('hide');
+          var trackers = $(this.getDOMNode()).find('.tracker-item');
+          $(trackers[0]).addClass('active-tracker');
+          this.setState({
+            lists: lists,
+            trackers: trackers
+          });
+        },
+        handleClick: function() {
+          var activeIndex = this.state.activeIndex;
+          $(this.state.lists[activeIndex]).addClass('hide');
+          $(this.state.trackers[activeIndex]).removeClass('active-tracker');
+          if (event.target.className.indexOf('right') > -1) {
+            if (activeIndex === this.state.lists.length - 1) {
+              activeIndex = 0;
+            } else {
+              activeIndex = activeIndex + 1;
+            }
+            this.setState({activeIndex: activeIndex});
+            $(this.state.lists[activeIndex]).removeClass('hide');
+            $(this.state.trackers[activeIndex]).addClass('active-tracker');
+          } else if (event.target.className.indexOf('left') > -1) {
+            if (activeIndex === 0) {
+              activeIndex = this.state.lists.length - 1;
+            } else {
+              activeIndex = activeIndex - 1;
+            }
+            this.setState({activeIndex: activeIndex});
+            $(this.state.lists[activeIndex]).removeClass('hide');
+            $(this.state.trackers[activeIndex]).addClass('active-tracker');
+          }
+        },
+        render: function() {
+          // make it so it always fits height-wise within the brower window!!!
+          return (
+            <div className='projects-list'>
+              <a href='javascript:void(0)' className='controller-link left' onClick={this.handleClick}></a>
+              <a href='javascript:void(0)' className='controller-link right' onClick={this.handleClick}></a>
+              { projects.map(function(project) {
+                return (
+                    <div className={'project-item hide'} key={project}>
+                        <h3>{featuredProjects[project]}</h3>
+                        <img className={'project-image'} src={'./pics/' + project + '.png'} />
+                        <div>
+                          <a className='project-link' href={projectsLink[project]} target='_blank'>{'Click to View Project'}</a>
+                          <a className='project-link' href={githubLink[project]} target='_blank'>{'Github Repo'}</a>
+                        </div>
+                        <p>{projectsDescriptions[project]}</p>
+                     </div>
+                  )
+              })}
+              <ul className='trackers'>
+                { projects.map(function(project) {
+                  return (
+                    <li className='tracker-item' key={project}></li>
+                  )
+                })}
+              </ul>
+            </div>
+          )
+        }
+      });
+
+      var NavBar = React.createClass({
+        handleClick: function() {
+          var about = this.refs.aboutLink.getDOMNode();
+          var projects = this.refs.projectsLink.getDOMNode();
+          if (event.target.className.indexOf('active') > -1) {
+            // do nothing
+          } else {
+            $(about).toggleClass('active-link');
+            $(projects).toggleClass('active-link');
+            $(about.parentElement).toggleClass('active');
+            $(projects.parentElement).toggleClass('active');
+          }
+
+          if (event.target.className.indexOf('about') > -1) {
+            $('.brief-desc').removeClass('hide');
+            $('.info').removeClass('hide');
+            $('.featured-proj').addClass('hide');
+          }
+          if (event.target.className.indexOf('project') > -1) {
+            $('.brief-desc').addClass('hide');
+            $('.info').addClass('hide');
+            $('.featured-proj').removeClass('hide');
+          }
+        },
+        render: function() {
+          return (
+            <div>
+              <div className='about-nav navbar-links active' onClick={this.handleClick}>
+                <a ref='aboutLink' className='active-link about-nav' href='javascript:void(0)'>{navigation.about}</a>
+              </div>
+              <div className='project-nav navbar-links' onClick={this.handleClick}>
+                <a ref='projectsLink' className='project-nav' href='javascrip:void(0)'>{navigation.projects}</a>
+              </div>
+            </div>
+          )
+        }
+      });
+
+      var BriefDesc = React.createClass({
+        getInitialState: function() {
+          return {
+            read: description.readmore
+          }
+        },
+        handleClick: function() {
+          $(this.refs.longDesc.getDOMNode()).toggle();
+          if (this.state.read === description.readmore) {
+            this.setState({ read: description.readless });
+          } else {
+            this.setState({ read: description.readmore });
+          }
+        },
+        render: function() {
+          return (
+            <div>
+              <div className='profile-div'><img className='profile-pic' src='./pics/profile_pic.png'/></div>
+              <p>{description.shown}</p>
+              <div className='read-link'><a href='javascript:void(0)' ref='read' onClick={this.handleClick}>{this.state.read}</a></div>
+              <div ref='longDesc' className='hide'>
+                <h4>{description.header}</h4>
+                <p>{description.paragraph1}</p>
+                <p>{description.paragraph2}</p>
+                <div className="fun-facts">Fun facts:
+                  <ul>
+                    <li>{description.funfact1}</li>
+                    <li>{description.funfact2}</li>
+                    <li>{description.funfact3}</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          )
+        }
+      });
+
+      var infos = ['github', 'linkedin'];
+
+      var personalInfo = {
+        github: {header: 'Github', url: 'https://github.com/lilianchen1'},
+        linkedin: {header: 'LinkedIn', url: 'https://www.linkedin.com/in/yilingchen405'}
+      };
+
+      var PersonalInfo = React.createClass({
+        render: function() {
+          return (
+            <div className='info-lists'>
+              { infos.map(function(info) {
+                return (
+                  <div key={info} className='info-item'>
+                    Visit my <a className='info-link' href={personalInfo[info].url} target='_blank'>{personalInfo[info].header}</a>
+                    <a className='info-link' href={personalInfo[info].url} target='_blank'><img src={'./pics/' + info + '.png'} /></a>
+                  </div>
+                )
+              })}
+            </div>
+          )
+        }
+      });
+
+      var Content = React.createClass({
+        render: function() {
+          return (
+            <div className='content'>
+              <div className='nav-bar'><NavBar /></div>
+              <div className='brief-desc'><BriefDesc /></div>
+              <div className='info'><PersonalInfo /></div>
+              <div className='featured-proj hide'><FeaturedProjects /></div>
+              <div className='footer'></div>
+            </div>
+          );
+        }
+      });
+
+      React.render(
+        React.createElement(Content, {}, ''),
+        document.getElementById('main')
+      );
+
+    </script>
   </body>
 </html>

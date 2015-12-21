@@ -1,114 +1,168 @@
 body {
   margin: 0;
   font-family: "helvetica neue";
-  background: #eee;
+  background: url('./pics/lotus_pic.jpg') no-repeat;
+}
+
+#main {
+  overflow: auto;
+  background: rgba(0, 0, 0, 0.6);
+  height: 100vh;
 }
 
 a {
+  color: lightblue;
   text-decoration: none;
-  color: rgb(51, 139, 198);
+}
+
+.active {
+  background: lightblue;
+}
+
+.navbar-links a.active-link {
+  color: white;
+}
+
+.navbar-links {
+  float: left;
+  width: 45%;
+  text-align: center;
+  padding: 10px 0 10px 0;
+}
+
+.navbar-links a {
+  color: lightblue;
 }
 
 .nav-bar {
-  background: rgb(18, 56, 94);
-  padding: 10px;
+  border-bottom: 1px solid lightblue;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding-left: 20px;
+  background: rgba(0,0,0,0.6);
 }
 
-.nav-bar a {
-  color: white;
-  font-style: italic;
-  font-family: "Book Antiqua";
+.hide {
+  display: none;
 }
 
-.nav-bar a:nth-child(2) {
-  margin-left:20px;
+.profile-pic {
+  max-width: 100%;
+  height: auto;
 }
 
-.nav-bar a:hover {
-  color: rgb(153, 204, 255);
+.brief-desc {
+  width: 45%;
+  float: left;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  margin: 50px 0 10px 20px;
 }
 
-.main {
-  margin: 10px;
-  margin-bottom: 50px;
-  margin-top:20px;
-  overflow:auto;
+.info {
+  width: 40%;
+  float: left;
+  margin-top: 60px;
 }
 
-.main h2 {
+.info-lists {
+  margin-left: 20px;
+}
+
+.info-item {
   text-align: center;
+  background: lightblue;
+  border-radius: 10px;
+  border: 1px solid white;
+  padding: 15px;
+  font-size: 18px;
+  margin-top: 5px;
+  color: rgb(45, 89, 134);
 }
 
-.footer {
-  border-top: 1px solid gray;
-  background:rgb(18, 56, 94);
-  padding: 10px;
-
-}
-
-.footer div {
-  display: inline-block;
-  margin-right: 40px;
-  color: rgb(151, 155, 155);
-  font-size: 14px;
-}
-
-ul.projects {
-  list-style: none;
-}
-
-ul.projects li a:first-of-type {
-  font-weight: 800;
-}
-
-ul.projects li a:nth-of-type(2), ul.projects li a:nth-of-type(3) {
-  font-size: 12px;
-  margin-left: 10px;
-}
-
-ul.projects p {
-  color: gray;
-  font-size: 14px;
-  width: 500px;
-}
-
-span.pro-desc {
-  border-bottom: 1px solid gray;
-}
-
-span.mit {
-  color: rgb(128, 0, 0);
+.info-item a.info-link {
+  color: rgb(45, 89, 134);
   font-weight: bold;
 }
 
-div.description {
-  width: 60%;
-  background:white;
-  border-radius: 10px;
-  padding: 20px;
-  display:inline-block;
-  margin-left: 20px;
-  float:left;
+.info-item img {
+  margin-left: 10px;
 }
 
-div.img {
-  display:inline-block;
-  margin-left:20px;
-  float:left;
-}
-
-p.elevator-pitch {
-  width: 300px;
-  background: white;
-  border-radius: 10px;
-  padding: 10px;
-  margin-left: 2px;
-}
-
-.head {
-  margin-bottom: 50px;
-}
-
-h3.more-pro-head {
+.read-link {
   text-align: center;
+}
+
+.featured-proj {
+  width: 70%;
+  padding: 20px;
+  border-radius: 10px;
+  background: white;
+  text-align: center;
+  margin-left: 12%;
+  margin-top: 50px;
+  margin-bottom: 10px;
+}
+
+.project-item {
+  min-height: 520px;
+}
+
+a.project-link {
+  display: block;
+  color: rgb(0, 76, 153);
+  margin-top: 10px;
+}
+
+.project-image {
+  max-width: 80%;
+  height: auto;
+}
+
+.controller-link {
+  display: block;
+  margin-top: 20%;
+}
+
+ul.trackers {
+  padding: 0
+}
+
+.tracker-item {
+  display: inline-block;
+  width: 12px;
+  height:12px;
+  border: 1px solid lightblue;
+  border-radius: 100px;
+  margin-right: 5px;
+}
+
+.active-tracker {
+  background: lightblue;
+}
+
+.left {
+  float: left;
+  width: 0;
+	height: 0;
+	border-top: 20px solid transparent;
+	border-bottom: 20px solid transparent;
+	border-right: 20px solid lightblue;
+}
+
+.right {
+  float: right;
+  width: 0;
+	height: 0;
+	border-top: 20px solid transparent;
+	border-bottom: 20px solid transparent;
+	border-left: 20px solid lightblue;
+}
+
+@media (max-width: 768px) {
+  .brief-desc, .info {
+    width: 90%;
+    float: none;
 }
