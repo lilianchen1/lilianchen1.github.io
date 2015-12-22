@@ -2,7 +2,7 @@
 
 <html>
   <head>
-    <title>Yiling's Portfolio</title>
+    <title>Yiling Chen</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <link href="./portfolio.css" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
@@ -16,7 +16,7 @@
     <script type="text/jsx">
 
       var navigation = {
-        about: 'About Yiling',
+        about: 'About',
         projects: 'Featured Projects'
       };
 
@@ -79,7 +79,6 @@
         },
 
         render: function() {
-          // make it so it always fits height-wise within the brower window!!!
           return (
             <div id='myCarousel' className='carousel slide' data-interval='false'>
               <a className="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
@@ -95,12 +94,12 @@
                   return (
                       <div className={'item'} key={project.projectName}>
                           <h3>{featuredProjects[project.projectName]}</h3>
-                          <div style={{minHeight: '300px'}}><img style={{width: '70%', margin: '0 auto'}} src={'./pics/' + project.projectName + '.png'} /></div>
-                          <div>
+                          <div><img style={{maxWidth: '70%', maxHeight: '310px', margin: '0 auto'}} src={'./pics/' + project.projectName + '.png'} /></div>
+                          <div style={{marginTop: '10px'}}>
                             <a className='project-link' href={projectsLink[project.projectName]} target='_blank'>{'Click to View Project'}</a>
                             <a className='project-link' href={githubLink[project.projectName]} target='_blank'>{'Github Repo'}</a>
                           </div>
-                          <p style={{width: '80%', margin: '0 auto', paddingTop: '10px'}}>{projectsDescriptions[project.projectName]}</p>
+                          <p style={{width: '80%', margin: '0 auto', paddingTop: '10px', paddingBottom: '10px'}}>{projectsDescriptions[project.projectName]}</p>
                        </div>
                     )
                 })}
@@ -207,7 +206,7 @@
               { infos.map(function(info) {
                 return (
                   <div key={info} className='info-item'>
-                    Visit my <a className='info-link' href={personalInfo[info].url} target='_blank'>{personalInfo[info].header}</a>
+                    <a className='info-link' href={personalInfo[info].url} target='_blank'>{personalInfo[info].header}</a>
                     <a className='info-link' href={personalInfo[info].url} target='_blank'><img src={'./pics/' + info + '.png'} /></a>
                   </div>
                 )
