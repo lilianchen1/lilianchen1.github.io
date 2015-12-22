@@ -124,7 +124,7 @@ a.project-link {
 }
 
 .carousel-inner .item {
-  min-height: 500px;
+  min-height: 510px;
 }
 
 .carousel-control.left, .carousel-control.right {
@@ -145,8 +145,18 @@ li.tracker {
   background-color: lightblue;
 }
 
+@media (max-width: 979px) {
+  .carousel-inner .item {
+    min-height: 470px;
+  }
+}
+
 @media (max-width: 768px) {
   .brief-desc, .info {
     width: 90%;
     float: none;
+  }
+  .carousel-inner .item {
+    min-height: 415px;
+  }
 }

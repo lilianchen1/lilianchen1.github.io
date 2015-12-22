@@ -79,7 +79,6 @@
         },
 
         render: function() {
-          // need to dynamically adjust min height of carousel item div because if window too large then indicators overlap texts and if too small, then huge whitespace
           return (
             <div id='myCarousel' className='carousel slide' data-interval='false'>
               <a className="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
@@ -95,12 +94,12 @@
                   return (
                       <div className={'item'} key={project.projectName}>
                           <h3>{featuredProjects[project.projectName]}</h3>
-                          <div style={{minHeight: '300px'}}><img style={{width: '70%', margin: '0 auto'}} src={'./pics/' + project.projectName + '.png'} /></div>
-                          <div>
+                          <div><img style={{maxWidth: '70%', maxHeight: '310px', margin: '0 auto'}} src={'./pics/' + project.projectName + '.png'} /></div>
+                          <div style={{marginTop: '10px'}}>
                             <a className='project-link' href={projectsLink[project.projectName]} target='_blank'>{'Click to View Project'}</a>
                             <a className='project-link' href={githubLink[project.projectName]} target='_blank'>{'Github Repo'}</a>
                           </div>
-                          <p style={{width: '80%', margin: '0 auto', paddingTop: '10px'}}>{projectsDescriptions[project.projectName]}</p>
+                          <p style={{width: '80%', margin: '0 auto', paddingTop: '10px', paddingBottom: '10px'}}>{projectsDescriptions[project.projectName]}</p>
                        </div>
                     )
                 })}
