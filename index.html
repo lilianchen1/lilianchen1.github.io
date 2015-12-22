@@ -3,10 +3,12 @@
 <html>
   <head>
     <title>Yiling's Portfolio</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <link href="./portfolio.css" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
     <script src="https://fb.me/react-0.13.3.js"></script>
     <script src="https://fb.me/JSXTransformer-0.13.3.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
   </head>
   <body>
     <div id='main'></div>
@@ -39,7 +41,7 @@
 
       var projectsDescriptions = {
         no_phenotype: 'No Phenotype is a Q/A site for the field of scientific research. It is inspired by Stack Overflow. It is a full stack web application built with rails on the backend and backbone on the frontend.',
-        viral_destruction: 'Viral Destruction is inspired by the classic Asteroids Game. In this rendition, the asteroids are nasty viruses, the ship is a white blood cell (B lymphocype), and the bullets are antibodies that will target the viruses and lead to their destruction!',
+        viral_destruction: 'Viral Destruction is inspired by the classic Asteroids Game. In this rendition, you are a B cell trying to destroy flu viruses with your antibodies!',
         tic_tac_toe: 'Play this popular game against an unbeatable computer!',
         minesweeper: 'Minesweeper - My first attempt at React'
       }
@@ -58,76 +60,59 @@
         minesweeper: 'javascript:void(0)'
       }
 
-      var projects = ['no_phenotype', 'viral_destruction', 'tic_tac_toe', 'minesweeper'];
+      var projects = [{projectName: 'no_phenotype', count: 0}, {projectName: 'viral_destruction', count: 1}, {projectName: 'tic_tac_toe', count: 2}, {projectName: 'minesweeper', count: 3}];
 
       var FeaturedProjects = React.createClass({
         getInitialState: function() {
           return {
             activeIndex: 0,
             lists: [],
-            trackers: []
+            indicators: []
           }
         },
+
         componentDidMount: function() {
-          var lists = $(this.getDOMNode()).find('.project-item');
-          $(lists[0]).removeClass('hide');
-          var trackers = $(this.getDOMNode()).find('.tracker-item');
-          $(trackers[0]).addClass('active-tracker');
-          this.setState({
-            lists: lists,
-            trackers: trackers
-          });
+          var items = $(this.getDOMNode()).find('.item');
+          var indicators = $(this.getDOMNode()).find('li.tracker');
+          $(items[0]).addClass('active');
+          $(indicators[0]).addClass('active');
         },
-        handleClick: function() {
-          var activeIndex = this.state.activeIndex;
-          $(this.state.lists[activeIndex]).addClass('hide');
-          $(this.state.trackers[activeIndex]).removeClass('active-tracker');
-          if (event.target.className.indexOf('right') > -1) {
-            if (activeIndex === this.state.lists.length - 1) {
-              activeIndex = 0;
-            } else {
-              activeIndex = activeIndex + 1;
-            }
-            this.setState({activeIndex: activeIndex});
-            $(this.state.lists[activeIndex]).removeClass('hide');
-            $(this.state.trackers[activeIndex]).addClass('active-tracker');
-          } else if (event.target.className.indexOf('left') > -1) {
-            if (activeIndex === 0) {
-              activeIndex = this.state.lists.length - 1;
-            } else {
-              activeIndex = activeIndex - 1;
-            }
-            this.setState({activeIndex: activeIndex});
-            $(this.state.lists[activeIndex]).removeClass('hide');
-            $(this.state.trackers[activeIndex]).addClass('active-tracker');
-          }
-        },
+
         render: function() {
           // make it so it always fits height-wise within the brower window!!!
           return (
-            <div className='projects-list'>
-              <a href='javascript:void(0)' className='controller-link left' onClick={this.handleClick}></a>
-              <a href='javascript:void(0)' className='controller-link right' onClick={this.handleClick}></a>
-              { projects.map(function(project) {
-                return (
-                    <div className={'project-item hide'} key={project}>
-                        <h3>{featuredProjects[project]}</h3>
-                        <img className={'project-image'} src={'./pics/' + project + '.png'} />
-                        <div>
-                          <a className='project-link' href={projectsLink[project]} target='_blank'>{'Click to View Project'}</a>
-                          <a className='project-link' href={githubLink[project]} target='_blank'>{'Github Repo'}</a>
-                        </div>
-                        <p>{projectsDescriptions[project]}</p>
-                     </div>
-                  )
-              })}
-              <ul className='trackers'>
+            <div id='myCarousel' className='carousel slide' data-interval='false'>
+              <a className="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                <span className="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span className="sr-only">Previous</span>
+              </a>
+              <a className="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                <span className="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span className="sr-only">Next</span>
+              </a>
+              <div className='carousel-inner' role='listbox'>
                 { projects.map(function(project) {
                   return (
-                    <li className='tracker-item' key={project}></li>
+                      <div className={'item'} key={project.projectName}>
+                          <h3>{featuredProjects[project.projectName]}</h3>
+                          <div style={{minHeight: '300px'}}><img style={{width: '70%', margin: '0 auto'}} src={'./pics/' + project.projectName + '.png'} /></div>
+                          <div>
+                            <a className='project-link' href={projectsLink[project.projectName]} target='_blank'>{'Click to View Project'}</a>
+                            <a className='project-link' href={githubLink[project.projectName]} target='_blank'>{'Github Repo'}</a>
+                          </div>
+                          <p style={{width: '80%', margin: '0 auto', paddingTop: '10px'}}>{projectsDescriptions[project.projectName]}</p>
+                       </div>
+                    )
+                })}
+              </div>
+
+              <ol className='carousel-indicators'>
+                { projects.map(function(project) {
+                  return (
+                    <li className='tracker' data-target='#myCarousel' data-slide-to={project.count} key={project.projectName}></li>
                   )
                 })}
-              </ul>
+              </ol>
             </div>
           )
         }
@@ -142,8 +127,8 @@
           } else {
             $(about).toggleClass('active-link');
             $(projects).toggleClass('active-link');
-            $(about.parentElement).toggleClass('active');
-            $(projects.parentElement).toggleClass('active');
+            $(about.parentElement).toggleClass('active-tab');
+            $(projects.parentElement).toggleClass('active-tab');
           }
 
           if (event.target.className.indexOf('about') > -1) {
@@ -160,7 +145,7 @@
         render: function() {
           return (
             <div>
-              <div className='about-nav navbar-links active' onClick={this.handleClick}>
+              <div className='about-nav navbar-links active-tab' onClick={this.handleClick}>
                 <a ref='aboutLink' className='active-link about-nav' href='javascript:void(0)'>{navigation.about}</a>
               </div>
               <div className='project-nav navbar-links' onClick={this.handleClick}>
@@ -191,7 +176,7 @@
               <div className='profile-div'><img className='profile-pic' src='./pics/profile_pic.png'/></div>
               <p>{description.shown}</p>
               <div className='read-link'><a href='javascript:void(0)' ref='read' onClick={this.handleClick}>{this.state.read}</a></div>
-              <div ref='longDesc' className='hide'>
+              <div ref='longDesc' style={{display: 'none'}}>
                 <h4>{description.header}</h4>
                 <p>{description.paragraph1}</p>
                 <p>{description.paragraph2}</p>
@@ -212,7 +197,7 @@
 
       var personalInfo = {
         github: {header: 'Github', url: 'https://github.com/lilianchen1'},
-        linkedin: {header: 'LinkedIn', url: 'https://www.linkedin.com/in/yilingchen405'}
+        linkedin: {header: 'LinkedIn', url: 'https://www.linkedin.com/in/yilingchen405'},
       };
 
       var PersonalInfo = React.createClass({
